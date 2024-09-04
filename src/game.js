@@ -7,9 +7,9 @@ class Game {
       this.bullets = [];
       this.enemies = [];
       this.isRunning = true;
-      this.spawnEnemyInterval = 1000; // Intervallo di spawn dei nemici
+      this.spawnEnemyInterval = 1000;
       this.lastEnemySpawn = 0;
-      
+  
       this.handleInput();
     }
   
@@ -36,13 +36,11 @@ class Game {
       this.bullets.forEach((bullet) => bullet.update());
       this.enemies.forEach((enemy) => enemy.update());
   
-      // Gestione spawn nemici
       if (timestamp - this.lastEnemySpawn > this.spawnEnemyInterval) {
         this.spawnEnemy();
         this.lastEnemySpawn = timestamp;
       }
   
-      // Collisioni tra proiettili e nemici
       this.checkCollisions();
     }
   
@@ -54,9 +52,13 @@ class Game {
   
     handleInput() {
       window.addEventListener('keydown', (event) => {
-        if (event.key === 'ArrowLeft') {
+        if (event.key === 'w') {
+          this.player.moveUp();
+        } else if (event.key === 'a') {
           this.player.moveLeft();
-        } else if (event.key === 'ArrowRight') {
+        } else if (event.key === 's') {
+          this.player.moveDown();
+        } else if (event.key === 'd') {
           this.player.moveRight();
         } else if (event.key === ' ') {
           this.bullets.push(new Bullet(this.player.x + this.player.width / 2, this.player.y));
@@ -87,7 +89,7 @@ class Game {
       this.y = y;
       this.width = 30;
       this.height = 30;
-      this.speed = 5;
+      this.speed = 8; // Aumentata la velocità del giocatore
     }
   
     moveLeft() {
@@ -98,8 +100,16 @@ class Game {
       this.x = Math.min(800 - this.width, this.x + this.speed);
     }
   
+    moveUp() {
+      this.y = Math.max(0, this.y - this.speed);
+    }
+  
+    moveDown() {
+      this.y = Math.min(600 - this.height, this.y + this.speed);
+    }
+  
     update() {
-      // Update del player se necessario
+      // Eventuali aggiornamenti logici per il player
     }
   
     draw(ctx) {
