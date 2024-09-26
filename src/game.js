@@ -3,7 +3,7 @@ class Game {
       this.ctx = ctx;
       this.width = width;
       this.height = height;
-      this.player = new Player(this.width / 2, this.height - 50);
+      this.player = new Player(this.width /2, this.height - 50); /* per impostare lo spawn del giocatore al centro mappa */
       this.bullets = [];
       this.enemies = [];
       this.isRunning = true;
@@ -89,7 +89,7 @@ class Game {
       this.y = y;
       this.width = 30;
       this.height = 30;
-      this.speed = 8; // Aumentata la velocità del giocatore
+      this.speed = 30; // Puoi regola la velocità del giocatore
     }
   
     moveLeft() {
@@ -110,6 +110,7 @@ class Game {
   
     update() {
       // Eventuali aggiornamenti logici per il player
+      // al momento nulla...
     }
   
     draw(ctx) {
@@ -124,7 +125,7 @@ class Game {
       this.y = y;
       this.width = 5;
       this.height = 10;
-      this.speed = 7;
+      this.speed = 30;
     }
   
     update() {
@@ -156,7 +157,7 @@ class Game {
       this.y = y;
       this.width = 30;
       this.height = 30;
-      this.speed = 2;
+      this.speed = 4;   /* velocità dei nemici */
     }
   
     update() {
